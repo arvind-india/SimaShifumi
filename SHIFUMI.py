@@ -42,24 +42,24 @@ gameDisplay = pygame.display.set_mode((LARGEUR,HAUTEUR))
 pygame.display.set_caption('SimaProject: SHIFUMI')
 clock = pygame.time.Clock()
 
-PIERRE_P = pygame.image.load('1_p.png').convert_alpha()
+PIERRE_P = pygame.image.load('data/1_p.png').convert_alpha()
 PIERRE_P = pygame.transform.scale(PIERRE_P, (IMAGE_X, IMAGE_Y))
-PIERRE_IA = pygame.image.load('1_ia.png').convert_alpha()
+PIERRE_IA = pygame.image.load('data/1_ia.png').convert_alpha()
 PIERRE_IA = pygame.transform.scale(PIERRE_IA, (IMAGE_X, IMAGE_Y))
-FEUILLE_P = pygame.image.load('2_p.png').convert_alpha()
+FEUILLE_P = pygame.image.load('data/2_p.png').convert_alpha()
 FEUILLE_P = pygame.transform.scale(FEUILLE_P, (IMAGE_X, IMAGE_Y))
-FEUILLE_IA = pygame.image.load('2_ia.png').convert_alpha()
+FEUILLE_IA = pygame.image.load('data/2_ia.png').convert_alpha()
 FEUILLE_IA = pygame.transform.scale(FEUILLE_IA, (IMAGE_X, IMAGE_Y))
-CISEAUX_P = pygame.image.load('3_p.png').convert_alpha()
+CISEAUX_P = pygame.image.load('data/3_p.png').convert_alpha()
 CISEAUX_P = pygame.transform.scale(CISEAUX_P, (IMAGE_X, IMAGE_Y))
-CISEAUX_IA = pygame.image.load('3_ia.png').convert_alpha()
+CISEAUX_IA = pygame.image.load('data/3_ia.png').convert_alpha()
 CISEAUX_IA = pygame.transform.scale(CISEAUX_IA, (IMAGE_X, IMAGE_Y))
 
-INTRO_IMAGE = pygame.image.load('intro.png').convert_alpha()
+INTRO_IMAGE = pygame.image.load('data/intro.png').convert_alpha()
 INTRO_IMAGE = pygame.transform.scale(INTRO_IMAGE, (LARGEUR, HAUTEUR))
 
-ICON = pygame.image.load('icon.png')
-BANNER = pygame.image.load('banner.png').convert_alpha()
+ICON = pygame.image.load('data/icon.png')
+BANNER = pygame.image.load('data/banner.png').convert_alpha()
 
 pygame.display.set_icon(ICON)
 
@@ -119,7 +119,7 @@ def button(msg,x,y,w,h,ic,ac,action=None):
             action()         
     else:
         pygame.draw.rect(gameDisplay, ic,(x,y,w,h))
-    smallText = pygame.font.SysFont("VeraBd.ttf",35)
+    smallText = pygame.font.SysFont("data/VeraBd.ttf",35)
     textSurf, textRect = text_objects(msg, smallText)
     textRect.center = ( (x+(w/2)), (y+(h/2)) )
     gameDisplay.blit(textSurf, textRect)
@@ -197,7 +197,7 @@ def game_intro():
                 game_quit()
                 
         gameDisplay.fill(SIMA)
-        largeText = pygame.font.Font('VeraBd.ttf',115)
+        largeText = pygame.font.Font('data/VeraBd.ttf',115)
         TextSurf, TextRect = text_objects("SHIFUMI", largeText)
         TextRect.center = ((LARGEUR/2),(HAUTEUR/2))
         gameDisplay.blit(TextSurf, TextRect)
@@ -218,7 +218,7 @@ def game_loop():
     if com != 1:
         print("[ERROR]\tNo serial communication. [P] for Rock, [F] for Paper, [C] for scissors !")   
     
-    pygame.mixer.music.load('battle.mp3')
+    pygame.mixer.music.load('data/battle.mp3')
     pygame.mixer.music.play(-1)
     print ("[MUSIC]\tPlay battle theme...")
     
@@ -226,7 +226,7 @@ def game_loop():
     score_ia = 0
 
     gameDisplay.fill(SIMA)
-    largeText = pygame.font.Font('VeraBd.ttf',120)
+    largeText = pygame.font.Font('data/VeraBd.ttf',120)
     TextSurf, TextRect = text_objects("Ready ?", largeText)
     TextRect.center = ((LARGEUR/2),(HAUTEUR/2))
     gameDisplay.blit(TextSurf, TextRect)
@@ -288,8 +288,8 @@ def game_loop():
             print ("[GAME]\tComputer wins")
             game_outro("ia")
 
-        largeText = pygame.font.Font('VeraBd.ttf',80)
-        smallText = pygame.font.SysFont("VeraBd.ttf",80)
+        largeText = pygame.font.Font('data/VeraBd.ttf',80)
+        smallText = pygame.font.SysFont("data/VeraBd.ttf",80)
         
         gameDisplay.blit(BANNER, [(LARGEUR/2)-400, HAUTEUR-200])
 
@@ -309,11 +309,11 @@ def game_outro(winner):
     outro = True
     print ("[GAME]\tScore screen")
     if winner == "p":
-        pygame.mixer.music.load('victory.mp3')
+        pygame.mixer.music.load('data/victory.mp3')
         pygame.mixer.music.play(-1)
         print ("[MUSIC]\tPlay victory theme...")
     elif winner == "ia":
-        pygame.mixer.music.load('defeat.mp3')
+        pygame.mixer.music.load('data/defeat.mp3')
         pygame.mixer.music.play(-1)
         print ("[MUSIC]\tPlay defeat theme...")
     while outro:
@@ -324,8 +324,8 @@ def game_outro(winner):
                 game_quit()
                 
         gameDisplay.fill(SIMA)
-        largeText = pygame.font.Font('VeraBd.ttf',115)
-        semilargeText = pygame.font.Font('VeraBd.ttf',80)
+        largeText = pygame.font.Font('data/VeraBd.ttf',115)
+        semilargeText = pygame.font.Font('data/VeraBd.ttf',80)
         if winner == "ia":
             text = "YOU LOSE."
         elif winner == "p":
